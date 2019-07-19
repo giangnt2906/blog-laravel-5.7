@@ -118,9 +118,9 @@ $con = mysqli_connect($servername, $username, $password, $dbname);
     <div id="postsByDayLine" style="width: 100%; height: 500px;"></div>
   </div>
 
-  <div class="container-fluid">
+  <!-- <div class="container-fluid">
     <div id="postsDayUser" style="width: 100%; height: 500px;"></div>
-  </div>
+  </div> -->
 
 </body>
 @endsection
