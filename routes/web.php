@@ -1,5 +1,7 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SendEmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/users/{id}', function ($id) {
-    return "This is user ".$id;
-});
+// Route::get('/users/{id}', function ($id) {
+//     return "This is user " . $id;
+// });
 
 Route::get('/index', 'PagesController@index');
 Route::get('/services', 'PagesController@services');
@@ -28,3 +30,13 @@ Route::resource('posts', 'PostsController');
 Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index');
+
+Route::get('/charts', 'PostsController@chart');
+
+Route::get('send_email', 'SendEmailController@index');
+Route::post('/send_email/send', 'SendEmailController@send');
+
+// Comment
+Route::post('/comment/store', 'CommentController@store')->name('comment.store');
+Route::post('/reply/store', 'CommentController@replyStore')->name('comment.store');
+

@@ -31,6 +31,17 @@ class PostsController extends Controller
     }
 
     /**
+     * Return posts model for charts.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function chart()
+    {
+        $posts = Post::all();
+        return view('backend.chart')->with('posts', $posts);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -102,6 +113,11 @@ class PostsController extends Controller
     {
         $post = Post::find($id);
 
+        //Check if post exists before editing
+        if (!isset($post)){
+            return redirect('/posts')->with('error', 'No Post Found');
+        }
+
         // Check for correct user
         if (auth()->user()->id !== $post->user_id) {
             return redirect('/posts')->with('error', 'Unauthorized Page');
@@ -167,6 +183,11 @@ class PostsController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
+
+        //Check if post exists before deleting
+        if (!isset($post)){
+            return redirect('/posts')->with('error', 'No Post Found');
+        }
 
         // Check for correct user
         if (auth()->user()->id !== $post->user_id) {

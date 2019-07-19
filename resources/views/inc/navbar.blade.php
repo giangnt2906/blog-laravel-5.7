@@ -20,6 +20,12 @@
           <a class="nav-link" href="/services">Services</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="/charts">Charts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/send_email">FeedBack</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="/posts">Blog</a>
         </li>
       </ul>
