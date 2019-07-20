@@ -37,6 +37,6 @@ Route::get('send_email', 'SendEmailController@index');
 Route::post('/send_email/send', 'SendEmailController@send');
 
 // Comment
-Route::post('/comment/store', 'CommentController@store')->name('comment.store');
-Route::post('/reply/store', 'CommentController@replyStore')->name('comment.store');
+Route::post('/comment/store', 'CommentController@store')->name('comment.add');
+Route::post('/reply/store', 'CommentController@replyStore')->name('reply.add');
 
