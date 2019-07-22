@@ -18,9 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/users/{id}', function ($id) {
-//     return "This is user " . $id;
-// });
+// Routes required for user authentication
+Auth::routes();
 
 Route::get('/index', 'PagesController@index');
 Route::get('/services', 'PagesController@services');
@@ -40,3 +39,7 @@ Route::post('/send_email/send', 'SendEmailController@send');
 Route::post('/comment/store', 'CommentController@store')->name('comment.add');
 Route::post('/reply/store', 'CommentController@replyStore')->name('reply.add');
 
+// Admin routes
+Route::get('/admin', 'AdminController@admin')
+    ->middleware('is_admin')
+    ->name('admin');
