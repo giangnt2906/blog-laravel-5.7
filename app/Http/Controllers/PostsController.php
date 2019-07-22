@@ -62,7 +62,8 @@ class PostsController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'body' => 'required',
-            'cover_image' => 'image|nullable|max:1999'
+            'cover_image' => 'image|nullable|max:1999',
+            'tags' => 'required'
         ]);
 
         // Handle file upload
@@ -81,14 +82,23 @@ class PostsController extends Controller
             $fileNameToStore = 'noimage.jpg';
         }
 
+        // For tags system
+        $data = $request->all();
+        $tags = explode(",", $request->tags);
+        
         // Create post
         $post = new Post;
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         $post->user_id = auth()->user()->id;
         $post->cover_image = $fileNameToStore;
+        $post->tag_name = $request->tags;
         $post->save();
-        return redirect('/posts')->with('success', 'Post Created');
+
+        $post->tag($tags);
+        $post->save();
+        // Normal return
+        return redirect('/posts')->with('success', 'Post created successfully');
     }
 
     /**

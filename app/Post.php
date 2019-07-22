@@ -12,13 +12,16 @@ class Post extends Model
     // Comment system
     use SoftDeletes;
 
+    // Tag system
+    use \Conner\Tagging\Taggable;
+
     protected $dates = ['deleted_at'];
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['title', 'body'];
+    protected $fillable = ['title', 'body', 'tag_name'];
 
     /**
      * The has Many Relationship

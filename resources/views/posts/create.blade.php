@@ -22,6 +22,11 @@
     <img id="img" src="/storage/cover_images/noimage.jpg" alt="your image" style="height:270px; width:480px;" />
 </div>
 
+<div class="form-group">
+    <label for="tags">Tags:</label>
+    <input type="text" data-role="tagsinput" class="form-control" name="tags">
+</div>
+
 {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
 <a href="/posts" class="btn btn-warning pull-right">Cancel</a>
 <br><br>
