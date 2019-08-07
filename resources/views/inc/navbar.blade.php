@@ -20,6 +20,9 @@
           <a class="nav-link" href="/services">Services</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="/privacy">Privacy</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="/charts">Charts</a>
         </li>
         <li class="nav-item">

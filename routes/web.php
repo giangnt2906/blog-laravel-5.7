@@ -24,6 +24,7 @@ Auth::routes();
 Route::get('/index', 'PagesController@index');
 Route::get('/services', 'PagesController@services');
 Route::get('/about', 'PagesController@about');
+Route::get('/privacy', 'PagesController@privacy');
 
 Route::resource('posts', 'PostsController');
 Auth::routes();
@@ -43,3 +44,7 @@ Route::post('/reply/store', 'CommentController@replyStore')->name('reply.add');
 Route::get('/admin', 'AdminController@admin')
     ->middleware('is_admin')
     ->name('admin');
+
+// OAuth Facebook
+Route::get('auth/facebook', 'FacebookAuthController@redirectToProvider')->name('facebook.login') ;
+Route::get('auth/facebook/callback', 'FacebookAuthController@handleProviderCallback');
