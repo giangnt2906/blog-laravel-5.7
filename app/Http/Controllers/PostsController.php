@@ -17,10 +17,10 @@ class PostsController extends Controller
     public function __construct()
     {
         // Normal
-        // $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth', ['except' => ['index', 'show']]);
 
         // Backend full
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**

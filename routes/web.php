@@ -48,3 +48,7 @@ Route::get('/admin', 'AdminController@admin')
 // OAuth Facebook
 Route::get('auth/facebook', 'FacebookAuthController@redirectToProvider')->name('facebook.login') ;
 Route::get('auth/facebook/callback', 'FacebookAuthController@handleProviderCallback');
+
+// Stripe SDK
+Route::get('/stripe', 'StripePaymentController@stripe');
+Route::post('/stripe', 'StripePaymentController@stripePost')->name('stripe.post');
