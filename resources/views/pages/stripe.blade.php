@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1>Stripe Payment Gateway Integration Example </h1>
+<h1>Stripe Donation Gateway Integration </h1>
 
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
@@ -17,7 +17,7 @@
             </div>
             <div class="panel-body">
 
-                <form role="form" action="{{ route('stripe.post') }}" method="post" class="require-validation" data-cc-on-file="false" data-stripe-publishable-key="pk_test_KA7WkUW2soDMaOoDJXgagwRw001tNRnkvA" id="payment-form">
+                <form role="form" action="{{ route('stripe.post', $post->id) }}" method="post" class="require-validation" data-cc-on-file="false" data-stripe-publishable-key="pk_test_KA7WkUW2soDMaOoDJXgagwRw001tNRnkvA" id="payment-form">
                     @csrf
 
                     <div class='form-row row'>
@@ -27,7 +27,7 @@
                     </div>
 
                     <div class='form-row row'>
-                        <div class='col-xs-12 form-group card required'>
+                        <div class='col-xs-12 form-group required'>
                             <label class='control-label'>Card Number</label> <input autocomplete='off' class='form-control card-number' size='20' type='text'>
                         </div>
                     </div>
@@ -45,6 +45,12 @@
                     </div>
 
                     <div class='form-row row'>
+                        <div class='col-xs-12 form-group required'>
+                            <label class='control-label' for="amount">Money donate: (In USD) </label> <input autocomplete='off' class='form-control' size='20' type='text' name="amount">
+                        </div>
+                    </div>
+
+                    <div class='form-row row'>
                         <div class='col-md-12 error form-group hide'>
                             <div class='alert-danger alert'>Please correct the errors and try
                                 again.</div>
@@ -53,7 +59,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now ($100)</button>
+                            <button class="btn btn-primary btn-lg btn-block" type="submit">Donate Now </button>
                         </div>
                     </div>
 

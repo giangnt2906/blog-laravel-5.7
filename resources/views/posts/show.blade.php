@@ -15,6 +15,9 @@
 <hr>
 <small>Written on {{$post->created_at}} by {{$post->user->name}}</small>
 <hr>
+
+<a href="/posts/{{$post->id}}/stripe" class="btn btn-primary">Donate Now </a>
+
 @auth
 @if(Auth::user()->id == $post->user_id)
 <a href="/posts/{{$post->id}}/edit" class="btn btn-success">Edit</a>

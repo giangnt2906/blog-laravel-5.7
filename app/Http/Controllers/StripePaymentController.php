@@ -7,6 +7,7 @@ use Stripe\Stripe;
 use Stripe\Customer;
 use Stripe\Charge;
 use Illuminate\Support\Facades\Session;
+use App\Post;
 
 class StripePaymentController extends Controller
 {
@@ -16,9 +17,11 @@ class StripePaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function stripe()
+    public function stripe($id)
     {
-        return view('pages.stripe');
+        $post = Post::find($id);
+        return view('pages.stripe')->with('post', $post);
+        // return view('posts.show');
     }
 
     /**
@@ -26,18 +29,37 @@ class StripePaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function stripePost(Request $request)
+    public function stripePost(Request $request, $id)
     {
-        Stripe::setApiKey("sk_test_6OMgG9TCfY4B2C12JBiQTlMm00F9gX3Doh");
-        Charge::create([
-            "amount" => 100 * 100,
-            "currency" => "usd",
-            "source" => $request->stripeToken,
-            "description" => "Test payment"
-        ]);
+        try {
 
-        Session::flash('success', 'Payment successful!');
+            // Find post from id and update Donated field for that Post
+            $post = Post::find($id);
+            $post->donated = $post->donated + $_POST['amount'];
 
-        return back();
+            $amount = $_POST['amount'];
+            Stripe::setApiKey("sk_test_6OMgG9TCfY4B2C12JBiQTlMm00F9gX3Doh");
+
+            // $customer = Customer::create(array(
+            //     'email' => $request->stripeEmail,
+            //     'source'  => $request->stripeToken
+            // ));
+
+            Charge::create([
+                // 'customer' => $customer->id,
+                "amount" => $amount * 100,
+                "currency" => "usd",
+                "source" => $request->stripeToken,
+                "description" => "Test payment"
+            ]);
+
+            Session::flash('success', 'Payment successful!');
+            $post->save();
+
+            return back();
+            // return redirect('/posts/{{id}}');
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
+        }
     }
 }

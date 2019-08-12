@@ -118,6 +118,14 @@ class PostsController extends Controller
     }
 
     /**
+     * Accept donation for post
+     *
+     * @param  int  $id for post_id
+     * @param request $request for stripe request ???
+     * @return \Illuminate\Http\Response
+     */
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id

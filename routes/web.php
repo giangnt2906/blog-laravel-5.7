@@ -50,5 +50,7 @@ Route::get('auth/facebook', 'FacebookAuthController@redirectToProvider')->name('
 Route::get('auth/facebook/callback', 'FacebookAuthController@handleProviderCallback');
 
 // Stripe SDK
-Route::get('/stripe', 'StripePaymentController@stripe');
-Route::post('/stripe', 'StripePaymentController@stripePost')->name('stripe.post');
+// Route::get('/stripe', 'StripePaymentController@stripe');
+// Route::post('/stripe', 'StripePaymentController@stripePost')->name('stripe.post');
+Route::get('posts/{id}/stripe', 'StripePaymentController@stripe');
+Route::post('posts/{id}/stripe', 'StripePaymentController@stripePost')->name('stripe.post');
