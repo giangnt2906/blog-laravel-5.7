@@ -25,7 +25,7 @@ class FacebookAuthController extends Controller
      */
     public function handleProviderCallback()
     {
-        $user = Socialite::driver('facebook')->user();
+        $user = Socialite::driver('facebook')->stateless()->user();
 
         $authUser = $this->findOrCreateUser($user);
 

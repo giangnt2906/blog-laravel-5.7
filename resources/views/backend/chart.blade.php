@@ -8,6 +8,7 @@ $password = "";
 $dbname = "lsapp";
 $con = mysqli_connect($servername, $username, $password, $dbname);
 ?>
+
 <script type="text/javascript">
   google.load("visualization", "1", {
     packages: ["corechart"]
@@ -72,7 +73,7 @@ $con = mysqli_connect($servername, $username, $password, $dbname);
   }
 </script>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   google.load("visualization", "1", {
     packages: ["corechart"]
   });
@@ -105,6 +106,40 @@ $con = mysqli_connect($servername, $username, $password, $dbname);
     var chart = new google.visualization.LineChart(document.getElementById("postsDayUser"));
     chart.draw(data, options);
   }
+</script> -->
+
+<script type="text/javascript">
+  google.load("visualization", "1", {
+    packages: ["corechart"]
+  });
+  google.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+
+      ['Post', 'MoneyD'],
+      <?php
+      $query = "SELECT posts.id AS Post, CASE WHEN (posts.donated <= 0) THEN 0 ELSE posts.donated END AS MoneyD FROM posts";
+
+      $exec = mysqli_query($con, $query);
+      while ($row = mysqli_fetch_array($exec)) {
+        echo "['" . $row['Post'] . "'," . $row['MoneyD'] . "],";
+      }
+      ?>
+
+    ]);
+
+    var options = {
+      title: 'Money Donated to each Post Comparison',
+      pieHole: 0.5,
+      pieSliceTextStyle: {
+        color: 'black',
+      },
+      legend: 'none'
+    };
+    var chart = new google.visualization.PieChart(document.getElementById("moneyMadePerPost"));
+    chart.draw(data, options);
+  }
 </script>
 
 </head>
@@ -121,6 +156,10 @@ $con = mysqli_connect($servername, $username, $password, $dbname);
   <!-- <div class="container-fluid">
     <div id="postsDayUser" style="width: 100%; height: 500px;"></div>
   </div> -->
+
+  <div class="container-fluid">
+    <div id="moneyMadePerPost" style="width: 100%; height: 500px;"></div>
+  </div>
 
 </body>
 @endsection
