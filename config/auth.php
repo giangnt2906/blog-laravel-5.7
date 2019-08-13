@@ -99,4 +99,12 @@ return [
         ],
     ],
 
+    // Socialite
+    'socialite' => [
+        'drivers' => [
+            'google',
+            'facebook',
+        ],
+    ],
+
 ];

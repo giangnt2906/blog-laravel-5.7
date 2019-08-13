@@ -53,7 +53,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-danger">
+                                <button type="submit" class="btn btn-success">
                                     {{ __('Login') }}
                                 </button>
 
@@ -67,8 +67,12 @@
                         <br />
                         <p style="margin-left:265px">OR</p>
                         <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
+                            <div class="col-md-4 offset-md-4">
                                 <a href="{{ route('facebook.login')}}" class="btn btn-primary">Login with Facebook</a>
+                            </div>
+                            <br/>
+                            <div class="col-md-4 pull-right">
+                                <a href="{{ url('auth/google') }}" class="btn btn-danger">Login with Google</a>
                             </div>
                         </div>
                     </form>

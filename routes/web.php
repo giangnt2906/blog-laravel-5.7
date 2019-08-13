@@ -54,3 +54,7 @@ Route::get('auth/facebook/callback', 'FacebookAuthController@handleProviderCallb
 // Route::post('/stripe', 'StripePaymentController@stripePost')->name('stripe.post');
 Route::get('posts/{id}/stripe', 'StripePaymentController@stripe');
 Route::post('posts/{id}/stripe', 'StripePaymentController@stripePost')->name('stripe.post');
+
+// Google login
+Route::get('auth/google', 'GoogleAuthController@redirect');
+Route::get('auth/google/callback', 'GoogleAuthController@callback');
